@@ -19,13 +19,13 @@
             height: 100%;
             background-image: url(https://lh3.googleusercontent.com/n1OQhXtkV6agySHJ34mqhUVX-2rC-wXhtoq1NHfYUExZ3QiQq0cGNNZEQkR3yX19pl1QznZVM7h_pIzQJEU_PHoRXrdMeIT5kLKmYGFL5iV6DxG0Zn4AHwDyx5ChD1DFmhCIeTIjvRwBhRc-YO9WlstDMT9sub2hYwbxPxdqlybkv_14x4YoqlBADxEnJRTivv9sXbjjAQ);
             background-size: cover;
-            filter: blur(0px); 
+            background-blend-mode: multiply;
             z-index: -1; 
         }
         .navbar {
             margin: 0;
             padding: 0;
-            background-color: #007bff;
+            background-color: white;
             z-index: 1; 
         }
         .navbar-brand {
@@ -33,16 +33,14 @@
             font-weight: bold;
         }
         .nav-link {
-            background-color: white; 
             color: black; 
-            font-weight: bold;
             padding: 10px 15px; 
             margin-left: 5px; 
             border-radius: 5px; 
-            transition: background-color 0.3s; 
         }
         .nav-link:hover {
-            background-color: #f8f9fa; 
+            color: #f8f9fa; 
+            background-color:rgb(28, 112, 238);
         }
         .navbar img {
             height: 50px; 
