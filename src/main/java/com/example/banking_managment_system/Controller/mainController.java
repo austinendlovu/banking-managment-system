@@ -118,4 +118,5 @@ public class mainController {
 	        model.addAttribute("error", "Customer is not registered in the system !!");
 	        return "customer-login"; 
 	    }
+	    
 }
