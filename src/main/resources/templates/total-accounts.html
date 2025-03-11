@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            padding: 20px;
+        }
+        .table-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+        }
+        .account-status {
+            padding: 8px 10px; 
+            border-radius: 5px; 
+            text-align: center;
+            font-size: 1.1em; 
+            display: inline-block;
+            margin: auto; 
+        }
+        .account-status-open {
+            background-color: green; 
+            color: white; 
+        }
+        .account-status-closed {
+            background-color: #dc3545; 
+            color: white; 
+        }
+    </style>
+</head>
+<body>
+
+<div class="table-container">
+    <h2>Accounts</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Card No</th>
+                <th>Account Type</th>
+                <th>Balance</th>
+                <th>ATM Pin</th>
+                <th>Account Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="account : ${accounts}">
+                <td th:text="${account.id}">Customer ID</td>
+                <td th:text="${account.cardNo}">Card No</td>
+                <td th:text="${account.accountType}">Account Type</td>
+                <td th:text="${account.balance}">Balance</td>
+                <td th:text="${account.atmPin}">ATM Pin</td>
+                <td>
+                    <span th:class="${account.accountStatus == 'Open' ? 'account-status account-status-open' : 'account-status account-status-closed'}"
+                          th:text="${account.accountStatus}">Account Status</span>
+                </td>
+                <td>
+                    <a th:href="@{/admin/editAccount(id=${account.id})}" class="btn btn-primary btn-sm">Edit</a>
+                    <a th:href="@{/admin/deleteAccount(id=${account.id})}" class="btn btn-danger btn-sm" 
+                       onclick="return confirm('Are you sure you want to delete this account?');">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/admin/home" class="btn btn-primary">Exit</a> 
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
