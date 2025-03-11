@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            padding: 20px;
+        }
+        .table-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+        }
+        .account-status {
+            padding: 8px 10px; 
+            border-radius: 5px; 
+            text-align: center;
+            font-size: 1.1em; 
+            display: inline-block;
+            margin: auto; 
+        }
+        .account-status-open {
+            background-color: green; 
+            color: white; 
+        }
+        .account-status-closed {
+            background-color: #dc3545; 
+            color: white; 
+        }
+    </style>
+</head>
+<body>
+
+<div class="table-container">
+    <h2>Transaction History</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Sender Account ID</th>
+                <th>Recipient Account ID</th>
+                <th>Amount</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="transaction : ${transactions}">
+                <td th:text="${transaction.senderAccountId}">Sender Account ID</td>
+                <td th:text="${transaction.recipientAccountId}">Recipient Account ID</td>
+                <td th:text="${transaction.amount}">Amount</td>
+                <td th:text="${#temporals.format(transaction.timestamp, 'yyyy-MM-dd HH:mm:ss')}">Timestamp</td> 
+            </tr>
+            <tr th:if="${#lists.isEmpty(transactions)}">
+                <td colspan="4" class="text-center">No transactions found.</td> 
+            </tr>
+        </tbody>
+    </table>
+    <a href="/customer/home" class="btn btn-primary">Exit</a> 
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -15,7 +15,6 @@
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
-            overflow-x: auto;
         }
         .account-status {
             padding: 8px 10px; 
@@ -32,19 +31,6 @@
         .account-status-closed {
             background-color: #dc3545; 
             color: white; 
-        }
-        .table {
-            min-width: 700px;
-        }
-        .actions-container {
-            display: flex;
-            flex-direction: column;
-        }
-        @media (min-width: 768px) {
-            .actions-container {
-                flex-direction: row;
-                gap: 10px;
-            }
         }
     </style>
 </head>
@@ -76,12 +62,10 @@
                           th:text="${account.accountStatus}">Account Status</span>
                 </td>
                 <td>
-                    <div class="d-flex flex-column flex-md-row">
-                        <a th:href="@{/admin/editAccount(id=${account.id})}" class="btn btn-primary btn-sm mb-1 mb-md-0 mr-md-2">Edit</a>
-                        <a th:href="@{/admin/deleteAccount(id=${account.id})}" class="btn btn-danger btn-sm"
-                           onclick="return confirm('Are you sure you want to delete this account?');">Delete</a>
-                    </div>
-                </td>                
+                    <a th:href="@{/admin/editAccount(id=${account.id})}" class="btn btn-primary btn-sm">Edit</a>
+                    <a th:href="@{/admin/deleteAccount(id=${account.id})}" class="btn btn-danger btn-sm" 
+                       onclick="return confirm('Are you sure you want to delete this account?');">Delete</a>
+                </td>
             </tr>
         </tbody>
     </table>
