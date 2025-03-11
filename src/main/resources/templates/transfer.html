@@ -9,61 +9,133 @@
         body {
             background-color: #f8f9fa;
         }
+
+        /* Navbar Style */
+        .navbar {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            z-index: 1;
+        }
+
+        .navbar-brand {
+            color: black !important;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: black;
+            padding: 10px 15px;
+            margin-left: 5px;
+            border-radius: 5px;
+        }
+
+        .nav-link:hover {
+            color: #f8f9fa;
+            background-color: rgb(28, 112, 238);
+        }
+
+        .navbar img {
+            height: 50px;
+            width: auto;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Form Styling */
         .container {
-            margin-top: 100px;
+            margin-top: 120px; /* Adjusted margin to avoid overlap with navbar */
             max-width: 500px;
             padding: 30px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
+
         h2 {
             text-align: center;
             margin-bottom: 30px;
             font-size: 24px;
             font-weight: 600;
         }
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
     </style>
 </head>
 <body>
-<div class="container">
-    <h2>Account Transfer</h2>
 
-    <form th:action="@{transfer}" method="post">
-        <div th:if="${error}" class="alert alert-danger mt-3" role="alert" th:text="${error}"></div>
-        
-        <div class="form-group">
-            <label for="senderCardNo">Your Account Number</label>
-            <input type="text" class="form-control" id="senderCardNo" name="senderCardNo"
-                   th:if="${account != null}" 
-                   th:value="${account.cardNo}" readonly>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIb_IOfo4kicUgnxHZ1GMktakCjWII5LodjA&s" alt="Icon" />
+                Customer Dashboard
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/withdraw">Withdraw</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/deposit">Deposit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/transfer">Transfer Money</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/balance">Balance Check</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/transactionHistory">Transaction History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/accountDetails">Account Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/customer/login" onclick="return confirm('Are you sure?')">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="recipientCardNo">Recipient Account Number</label>
-            <input type="text" class="form-control" id="recipientCardNo" name="recipientCardNo"
-                   placeholder="Enter recipient card number..." required>
-        </div>
-        <div class="form-group">
-            <label for="amount">Amount</label>
-            <input type="number" class="form-control" id="amount" name="amount"
-                   placeholder="Enter amount.." min="0" step="0.01" required>
-        </div>
-        <div class="form-group">
-            <label for="pin">Pin</label>
-            <input type="password" class="form-control" id="pin" name="atmPin"
-                   placeholder="Enter pin.." required>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Account Transfer</button>
-    </form>
-    
-    
-</div>
+    </nav>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Account Transfer Form -->
+    <div class="container">
+        <h2>Account Transfer</h2>
+
+        <form th:action="@{transfer}" method="post">
+            <div th:if="${error}" class="alert alert-danger mt-3" role="alert" th:text="${error}"></div>
+            
+            <div class="form-group">
+                <label for="senderCardNo">Your Account Number</label>
+                <input type="text" class="form-control" id="senderCardNo" name="senderCardNo"
+                       th:if="${account != null}" 
+                       th:value="${account.cardNo}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="recipientCardNo">Recipient Account Number</label>
+                <input type="text" class="form-control" id="recipientCardNo" name="recipientCardNo"
+                       placeholder="Enter recipient card number..." required>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" class="form-control" id="amount" name="amount"
+                       placeholder="Enter amount.." min="0" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="pin">Pin</label>
+                <input type="password" class="form-control" id="pin" name="atmPin"
+                       placeholder="Enter pin.." required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Account Transfer</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>
