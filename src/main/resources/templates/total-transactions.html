@@ -36,31 +36,34 @@
 </head>
 <body>
 
-<div class="table-container">
-    <h2>Total Transactions</h2>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Sender Account ID</th>
-                <th>Recipient Account ID</th>
-                <th>Amount</th>
-                <th>Timestamp</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="transaction : ${transactions}">
-                <td th:text="${transaction.senderAccountId}">Sender Account ID</td>
-                <td th:text="${transaction.recipientAccountId}">Recipient Account ID</td>
-                <td th:text="${transaction.amount}">Amount</td>
-                <td th:text="${#temporals.format(transaction.timestamp, 'yyyy-MM-dd HH:mm:ss')}">Timestamp</td> 
-            </tr>
-            <tr th:if="${#lists.isEmpty(transactions)}">
-                <td colspan="4" class="text-center">No transactions found.</td> 
-            </tr>
-        </tbody>
-    </table>
-    <a href="/admin/home" class="btn btn-primary">Exit</a> 
-</div>
+    <div class="table-container">
+        <h2>Total Transactions</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sender Account ID</th>
+                        <th>Recipient Account ID</th>
+                        <th>Amount</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="transaction : ${transactions}">
+                        <td th:text="${transaction.senderAccountId}">Sender Account ID</td>
+                        <td th:text="${transaction.recipientAccountId}">Recipient Account ID</td>
+                        <td th:text="${transaction.amount}">Amount</td>
+                        <td th:text="${#temporals.format(transaction.timestamp, 'yyyy-MM-dd HH:mm:ss')}">Timestamp</td> 
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(transactions)}">
+                        <td colspan="4" class="text-center">No transactions found.</td> 
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <a href="/admin/home" class="btn btn-primary">Exit</a> 
+    </div>
+    
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
