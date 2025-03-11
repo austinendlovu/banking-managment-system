@@ -64,8 +64,10 @@
                         <td th:text="${customer.gender}"></td>
                         <td th:text="${customer.branch.id}"></td>
                         <td>
-                            <button class="btn btn-edit" th:onclick="'editCustomer(' + ${customer.id} + ')'">Edit</button>
-                            <button class="btn btn-delete" th:onclick="'deleteCustomer(' + ${customer.id} + ')'">Delete</button>
+                            <div class="d-flex flex-column flex-md-row">
+                                <button class="btn btn-edit mb-1 mb-md-0 mr-md-2" th:onclick="'editCustomer(' + ${customer.id} + ')'">Edit</button>
+                                <button class="btn btn-delete" th:onclick="'deleteCustomer(' + ${customer.id} + ')'">Delete</button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
