@@ -1,139 +1,140 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Dashboard</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden; 
-        }
-        .background {
-            position: fixed; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url(https://lh3.googleusercontent.com/n1OQhXtkV6agySHJ34mqhUVX-2rC-wXhtoq1NHfYUExZ3QiQq0cGNNZEQkR3yX19pl1QznZVM7h_pIzQJEU_PHoRXrdMeIT5kLKmYGFL5iV6DxG0Zn4AHwDyx5ChD1DFmhCIeTIjvRwBhRc-YO9WlstDMT9sub2hYwbxPxdqlybkv_14x4YoqlBADxEnJRTivv9sXbjjAQ);
-            background-size: cover;
-            background-blend-mode: multiply;
-            z-index: -1; 
-        }
-        .navbar {
-            margin: 0;
-            padding: 0;
-            background-color: white;
-            z-index: 1; 
-        }
-        .navbar-brand {
-            color: black !important;
-            font-weight: bold;
-        }
-        .nav-link {
-            color: black; 
-            padding: 10px 15px; 
-            margin-left: 5px; 
-            border-radius: 5px; 
-        }
-        .nav-link:hover {
-            color: #f8f9fa; 
-            background-color:rgb(28, 112, 238);
-        }
-        .navbar img {
-            height: 50px; 
-            width: auto; 
-            margin: 0; 
-            padding: 0; 
-        }
-        .dashboard-container {
-            margin-top: 100px; 
-            text-align: center;
-            padding: 40px; 
-        }
-        .icon {
-            font-size: 50px;
-        }
-        .dashboard-container p {
-            margin: 0; 
-            font-size: 1.2em; 
-            line-height: 1.5;
-            color: #333; 
-        }
-        .font-weight-bold {
-            font-size: 1.5em; 
-            color: #007bff; 
-        }
-        .para {
-            color: antiquewhite;
-        }
-        .welcome-message {
-            margin-top: 20px; 
-            font-size: 8rem; 
-            color: black;
-            font-weight: bold;
-            font-style: italic;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Dashboard</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      /* Removing overflow hidden to allow scrolling if needed */
+    }
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url(https://lh3.googleusercontent.com/n1OQhXtkV6agySHJ34mqhUVX-2rC-wXhtoq1NHfYUExZ3QiQq0cGNNZEQkR3yX19pl1QznZVM7h_pIzQJEU_PHoRXrdMeIT5kLKmYGFL5iV6DxG0Zn4AHwDyx5ChD1DFmhCIeTIjvRwBhRc-YO9WlstDMT9sub2hYwbxPxdqlybkv_14x4YoqlBADxEnJRTivv9sXbjjAQ);
+      background-size: cover;
+      background-blend-mode: multiply;
+      z-index: -1;
+    }
+    .navbar {
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      z-index: 1;
+    }
+    .navbar-brand {
+      color: black !important;
+      font-weight: bold;
+    }
+    .nav-link {
+      color: black;
+      padding: 10px 15px;
+      margin-left: 5px;
+      border-radius: 5px;
+    }
+    .nav-link:hover {
+      color: #f8f9fa;
+      background-color: rgb(28, 112, 238);
+    }
+    .navbar img {
+      height: 50px;
+      width: auto;
+      margin: 0;
+      padding: 0;
+    }
+    .dashboard-container {
+      margin-top: 100px;
+      text-align: center;
+      padding: 40px;
+    }
+    .icon {
+      font-size: 50px;
+    }
+    .dashboard-container p {
+      margin: 0;
+      font-size: 1.2em;
+      line-height: 1.5;
+      color: #333;
+    }
+    .font-weight-bold {
+      font-size: 1.5em;
+      color: #007bff;
+    }
+    .para {
+      color: antiquewhite;
+    }
+    .welcome-message {
+      margin-top: 20px;
+      font-size: 8rem;
+      color: black;
+      font-weight: bold;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-<div class="background"></div> 
+  <div class="background"></div>
 
-<nav class="navbar navbar-expand-lg fixed-top">
+  <!-- Added navbar-light for proper toggler icon styling on a light background -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIb_IOfo4kicUgnxHZ1GMktakCjWII5LodjA&s" alt="Icon" /> 
-            Customer Dashboard
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/withdraw">Withdraw</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/deposit">Deposit</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/transfer">Transfer Money</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/balance">Balance Check</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/transactionHistory">Transaction History</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/accountDetails">Account Details</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/customer/login" onclick="return confirm('Are you sure?')">Logout</a>
-                </li>
-            </ul>
-        </div>
+      <a class="navbar-brand" href="#">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIb_IOfo4kicUgnxHZ1GMktakCjWII5LodjA&s" alt="Icon" />
+        Customer Dashboard
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/withdraw">Withdraw</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/deposit">Deposit</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/transfer">Transfer Money</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/balance">Balance Check</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/transactionHistory">Transaction History</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/accountDetails">Account Details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/customer/login" onclick="return confirm('Are you sure?')">Logout</a>
+          </li>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>
 
-
-<div class="dashboard-container">
-    <div th:if="${message}" class="alert alert-info mt-3 alert-dismissible fade show" role="alert" style="color: white;
-    font-size: 20px; font-weight: bold; background-color:green ;">
-        <span th:text="${message}"></span>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+  <div class="dashboard-container">
+    <div th:if="${message}" class="alert alert-info mt-3 alert-dismissible fade show" role="alert" style="color: white; font-size: 20px; font-weight: bold; background-color: green;">
+      <span th:text="${message}"></span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    
-    <div class="welcome-message" th:text="'Welcome, ' + ${customerFirstName} + '!'"></div> 
-</div>
 
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div class="welcome-message" th:text="'Welcome, ' + ${customerFirstName} + '!'"></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <!-- Include Popper.js for Bootstrap dropdowns and toggling -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>
