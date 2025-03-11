@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h2>Account Details</h2>
+    
+    <br><br>
+    <h5>Customer Information</h5>
+    <p th:text="'First Name: ' + ${customer.firstName}"></p>
+    <p th:text="'Last Name: ' + ${customer.lastName}"></p>
+    <p th:text="'Email: ' + ${customer.email}"></p>
+    <p th:text="'Mobile No: ' + ${customer.mobile}"></p>
+
+
+    <br><br>
+    <h5>Account Information</h5>
+    <p th:text="'Account Number: ' + ${account.cardNo}"></p>
+    <p th:text="'Account Balance: $' + ${account.balance}"></p>
+    <p th:text="'Account Type: ' + ${account.accountType}"></p>
+    
+    <div class="d-flex justify-content-between">
+        <a href="/changePin" class="btn btn-primary">Change PIN</a>
+        <a href="/customer/home" class="btn btn-primary">Back to Home</a>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Account</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            width: 600px; 
+            padding: 30px; 
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1); 
+            text-align: center;
+        }
+        .form-header {
+            margin-bottom: 25px;
+        }
+        .form-control {
+            height: 45px; 
+            font-size: 16px; 
+        }
+        .btn {
+            width: 48%; 
+            height: 45px; 
+            font-size: 18px; 
+            margin: 5px; 
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="form-header">
+            <h2>Add Account</h2>
+        </div>
+
+        <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+        <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+
+        <form th:action="@{/admin/addAccount}" th:object="${account}" method="post" onsubmit="setTimeout(() => window.location.reload(), 1000);">
+            <div class="form-row">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="customerId">Select Customer ID</label>
+                        <select class="form-control" id="customerId" name="customerId" required>
+                            <option value="" disabled selected>Select Customer</option>
+                            <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.id}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="cardNo">Card Number</label>
+                    <input type="text" class="form-control" id="cardNo" th:field="*{cardNo}" placeholder="Enter card no.." required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="accountType">Account Type</label>
+                    <select class="form-control" id="accountType" th:field="*{accountType}" required>
+                        <option value="" disabled selected>Select Account Type</option>
+                        <option value="Savings">Savings</option>
+                        <option value="Current">Current</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="balance">Balance</label>
+                    <input type="number" class="form-control" id="balance" th:field="*{balance}" placeholder="Enter balance.." required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="atmPin">ATM Pin</label>
+                    <input type="text" class="form-control" id="atmPin" th:field="*{atmPin}" placeholder="ATM Pin" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="accountStatus">Account Status</label>
+                    <select class="form-control" id="accountStatus" th:field="*{accountStatus}" required>
+                        <option value="" disabled selected>Account Status</option>
+                        <option value="Open">Open</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Account</button>
+            <a href="/admin/home" class="btn btn-primary">Exit</a> 
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
